@@ -19,7 +19,7 @@ class starryNightHelperView extends View
   #
   # Returns: main's pane widget
   @content: ->
-    @div click: 'onClick', style: 'display: inline-block !important; height: 100% !important; overflow: scroll; width: 300px; white-space: nowrap; text-overflow:  clip;', class: 'starrynight-helper
+    @div click: 'onClick', style: 'display: inline-block !important; height: 100% !important; overflow: scroll; width: 500px; white-space: nowrap; text-overflow:  clip;', class: 'starrynight-helper
       tool-panel panel-bottom text-smaller', =>
       @div class: 'panel-heading status-bar tool-panel', =>
         @div class: 'status-bar-left pull-left starrynight-logo'
@@ -311,9 +311,9 @@ class starryNightHelperView extends View
       new BufferedProcess
         command: 'starrynight'
         args: ['run-tests', '--framework', 'nightwatch']
-        #options:
-        #  cwd: path.join atom.project.getPaths()[0], @starrynightAppPath
-        #  env: process.env
+        options:
+          cwd: path.join atom.project.getPaths()[0], @starrynightAppPath
+          env: process.env
         stdout: @paneAddInfo
         stderr: @paneAddErr
         #exit: @paneAddExit
@@ -341,11 +341,13 @@ class starryNightHelperView extends View
       @setMsg 'Trying to run StarryNight...'
       # Launch Starrynight reset
       new BufferedProcess
-        command: 'starrynight'
-        args: ['--help']
-        #options:
-        #  cwd: path.join atom.project.getPaths()[0], @starrynightAppPath
-        #  env: process.env
+        #command: 'starrynight'
+        #args: ['--help']
+        command: 'ls'
+        args: ['-la']
+        options:
+          cwd: path.join atom.project.getPaths()[0], @starrynightAppPath
+          env: process.env
         stdout: @paneAddInfo
         stderr: @paneAddErr
         #exit: @paneAddExit
