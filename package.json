@@ -1,7 +1,7 @@
 {
   "name": "starrynight-helper",
   "main": "./lib/starrynight-helper",
-  "version": "0.26.0",
+  "version": "1.26.0",
   "private": true,
   "description": "Launch StarryNight from Atom.io",
   "repository": {
@@ -15,6 +15,11 @@
   "activationCommands": {
     "atom-workspace": [
       "starrynight-helper:toggle",
+      "starrynight-helper:help",
+      "starrynight-helper:nightwatch",
+      "starrynight-helper:autoconfig",
+      "starrynight-helper:environment",
+      "starrynight-helper:showHide",
       "starrynight-helper:reset"
     ]
   },
