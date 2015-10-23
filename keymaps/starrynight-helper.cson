@@ -1,0 +1,11 @@
+'.platform-win32 atom-workspace, .platform-linux atom-workspace':
+  'ctrl-alt-w': 'starrynight-helper:toggle'
+  'ctrl-alt-e': 'starrynight-helper:reset'
+  'ctrl-alt-r': 'starrynight-helper:showHide'
+  'ctrl-alt-q': 'starrynight-helper:alert'
+
+'.platform-darwin atom-workspace':
+  'cmd-alt-w': 'starrynight-helper:toggle'
+  'cmd-alt-e': 'starrynight-helper:reset'
+  'cmd-alt-r': 'starrynight-helper:showHide'
+  'cmd-alt-q': 'starrynight-helper:alert'
