@@ -1,7 +1,7 @@
 {
   "name": "starrynight-helper",
   "main": "./lib/starrynight-helper",
-  "version": "1.29.0",
+  "version": "1.30.0",
   "private": true,
   "description": "Launch StarryNight from Atom.io",
   "repository": {
