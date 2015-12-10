@@ -19,7 +19,7 @@ class starryNightHelperView extends View
   #
   # Returns: main's pane widget
   @content: ->
-    @div click: 'onClick', style: 'display: inline-block !important; height: 100% !important; overflow: scroll; width: 500px; white-space: nowrap; text-overflow:  clip;', class: 'starrynight-helper
+    @div click: 'onClick', style: 'display: inline-block !important; overflow: scroll; width: 500px; white-space: nowrap; text-overflow: clip; height: 100% !important;', class: 'starrynight-helper
       tool-panel panel-bottom text-smaller', =>
       @div class: 'panel-heading status-bar tool-panel', =>
         @div class: 'status-bar-left pull-left starrynight-logo'
@@ -48,6 +48,7 @@ class starryNightHelperView extends View
       'starrynight-helper:help': => @help()
       'starrynight-helper:environment': => @environment()
       'starrynight-helper:nightwatch': => @nightwatch()
+      'starrynight-helper:gagarin': => @gagarin()
       'starrynight-helper:autoconfig': => @autoconfig()
     # Ensure destruction of Starrynight's process
     $(window).on 'beforeunload', => @_killStarrynight()
@@ -69,13 +70,13 @@ class starryNightHelperView extends View
   # Returns: `undefined`
   showHide: =>
     @isPaneOpened = not @isPaneOpened
-    height = if @isPaneOpened then PANE_TITLE_HEIGHT_OPEN \
-      else PANE_TITLE_HEIGHT_CLOSE
-    @velocity
-      properties:
-        height: height
-      options:
-        duration: 100
+    #height = if @isPaneOpened then PANE_TITLE_HEIGHT_OPEN \
+    #  else PANE_TITLE_HEIGHT_CLOSE
+    #@velocity
+    #  properties:
+    #    height: height
+    #  options:
+    #    duration: 100
 
   # Private: Kill Starrynight's process and its subprocess (Mongo).
   #
@@ -119,7 +120,7 @@ class starryNightHelperView extends View
     @paneIconStatus = 'WAITING'
     @setMsg 'Launching StarryNight...'
     # Clear height if it has been modified formerly
-    @height PANE_TITLE_HEIGHT_CLOSE
+    # @height PANE_TITLE_HEIGHT_CLOSE
 
     @isPaneOpened = false
     # Fade the panel in
@@ -322,6 +323,39 @@ class starryNightHelperView extends View
       @paneIconStatus = 'ERROR'
       @setMsg err.message
 
+  # Public: starrynight run-tests --framework nightwatch
+  #
+  # Returns: list of commands
+  gagarin: =>
+    @setMsg 'Gagarin'
+    @paneIconStatus = 'INFO'
+
+    unless @hasParent()
+      # Display main pane
+      @_displayPane()
+    try
+      # Get and set settings
+      # @_getSettings()
+      # Modify process env and check mup files
+      # @_modifyProcessEnv()
+      @setMsg 'Trying to run Gagarin...'
+      @setMsg '@starrynightAppPath: ' + @starrynightAppPath
+      # Launch Starrynight reset
+      new BufferedProcess
+        command: 'starrynight'
+        args: ['run-tests', '--framework', 'gagarin', '--webdriver', 'http://localhost:9515', '--runfrom',  atom.project.getPaths()[0]]
+        options:
+          #cwd: path.join atom.project.getPaths()[0], @starrynightAppPath
+          cwd: atom.project.getPaths()[0]
+          env: process.env
+        stdout: @paneAddInfo
+        stderr: @paneAddErr
+        #exit: @paneAddExit
+      @setMsg '--Gagarin--'
+    catch err
+      @paneIconStatus = 'ERROR'
+      @setMsg err.message
+
 
   # Public: starrynight --help
   #
@@ -435,7 +469,7 @@ class starryNightHelperView extends View
   forceAppear: =>
     @isPaneOpened = true
     @velocity
-      properties: height: PANE_TITLE_HEIGHT_OPEN
+      #properties: height: PANE_TITLE_HEIGHT_OPEN
       options: duration: 100
 
   # Public: Set message in pane's details section

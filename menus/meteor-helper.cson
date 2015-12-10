@@ -3,6 +3,7 @@
     { 'label': 'Open StarryNight', 'command': 'starrynight-helper:toggle'}
     { 'label': 'StarryNight Help', 'command': 'starrynight-helper:help'}
     { 'label': 'StarryNight Nightwatch', 'command': 'starrynight-helper:nightwatch'}
+    { 'label': 'StarryNight Gagarin', 'command': 'starrynight-helper:gagarin'}
     { 'label': 'Configure Nightwatch', 'command': 'starrynight-helper:autoconfig'}
     { 'label': 'Display Env Variables', 'command': 'starrynight-helper:environment'}
   ]
@@ -12,10 +13,11 @@
     'submenu': [
       'label': 'StarryNight'
       'submenu': [
-        { 'label': 'Toggle', 'command': 'starrynight-helper:toggle' }
+        { 'label': 'Open/Close', 'command': 'starrynight-helper:toggle' }
         { 'label': 'Reset', 'command': 'starrynight-helper:reset' }
         { 'label': 'Show/hide', 'command': 'starrynight-helper:showHide' }
         { 'label': 'Help', 'command': 'starrynight-helper:help' }
+        { 'label': 'Gagarin', 'command': 'starrynight-helper:gagarin' }
         { 'label': 'Nightwatch', 'command': 'starrynight-helper:nightwatch' }
         { 'label': 'Autoconfig', 'command': 'starrynight-helper:autoconfig' }
         { 'label': 'Environment', 'command': 'starrynight-helper:environment' }
